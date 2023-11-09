@@ -1,0 +1,169 @@
+<!-- health_coach.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>健康导师-类型</title>
+    <style>
+        @media screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+        /* 添加一些基础的CSS样式和动画效果 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 10px;
+        }
+        header select {
+            font-size: 16px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #555;
+            color: #fff;
+        }
+        main {
+            width:1200px ;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .animated-search-box {
+            width: 70%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            transition: width 0.4s ease-in-out;
+        }
+        .animated-search-box:focus {
+            width: 90%;
+            border-color: #4CAF50;
+        }
+        .coach-list-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .coach-list-item h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- 下拉导航栏 -->
+        <select id="navigation-dropdown" onchange="navigateToPage(this)">
+            <option value="健康导师.html">首页</option>
+            <option value="health_coach.html" selected>健康导师类型</option>
+            <!-- 这里可以添加更多的页面选项 -->
+        </select>
+        <!-- 用户登录注册链接 -->
+        <div style="float: right;">
+            <a href="#" onclick="login()">登录</a> | <a href="#" onclick="register()">注册</a>
+        </div>
+    </header>
+    <main>
+
+        <!-- 动画搜索框 -->
+        <input type="text" class="animated-search-box" placeholder="搜索健康导师..." oninput="searchCoaches(this.value)">
+        <!-- 健康导师类型的内容 -->
+        <section id="coach-list">
+            <h1>健康导师类型</h1>
+            <p>健康导师A</p>
+            <p>健康导师B</p>
+            <!-- 动态内容将加载到这里 -->
+        </section>
+    </main>
+
+    <script>
+        // 导航函数
+        function navigateToPage(select) {
+            window.location = select.value;
+        }
+
+        // 搜索健康导师的函数
+        function searchCoaches(query) {
+            // 假设我们有一个获取健康导师数据的函数（这里用静态数据代替）
+            var coaches = [
+                { name: '健康导师A', type: '营养' },
+                { name: '健康导师B', type: '健身' },
+                // 更多导师...
+            ];
+
+            var filteredCoaches = coaches.filter(function(coach) {
+                return coach.name.includes(query) || coach.type.includes(query);
+            });
+
+            // 清空当前的列表
+            var coachList = document.getElementById('coach-list');
+            coachList.innerHTML = '';
+
+            // 将搜索结果添加到页面中
+            filteredCoaches.forEach(function(coach) {
+                var coachItem = document.createElement('div');
+                coachItem.className = 'coach-list-item';
+                
+                var coachName = document.createElement('h3');
+                coachName.textContent = coach.name;
+                
+                var coachType = document.createElement('p');
+                coachType.textContent = '类型：' + coach.type;
+
+                coachItem.appendChild(coachName);
+                coachItem.appendChild(coachType);
+                coachList.appendChild(coachItem);
+            });
+        }
+        // 获取个性化推荐的函数
+        function getPersonalizedRecommendations(userId) {
+            // 假设我们有一个获取个性化推荐的函数（这里用静态数据代替）
+            var recommendations = [
+                { name: '健康导师C', type: '心理健康' },
+                { name: '健康导师D', type: '瑜伽' },
+                // 更多推荐...
+            ];
+
+            return recommendations;
+        }
+
+        // 获取用户ID（这里用静态数据代替）
+        var userId = 'user123';
+
+        // 获取个性化推荐并将其添加到页面中
+        var personalizedRecommendations = getPersonalizedRecommendations(userId);
+        personalizedRecommendations.forEach(function(recommendation) {
+            var el = document.createElement('div');
+            el.classList.add('coach-list-item');
+            el.textContent = recommendation.name + ' - ' + recommendation.type + '（个性化推荐）';
+            document.getElementById('coach-list').appendChild(el);
+        });
+         // 导航函数
+        function navigateToPage(select) {
+            window.location = select.value;
+        }
+
+        // 用户登录函数
+        function login() {
+            // 在这里添加处理用户登录的代码
+            alert('用户登录功能正在开发中...');
+        }
+
+        // 用户注册函数
+        function register() {
+            // 在这里添加处理用户注册的代码
+            alert('用户注册功能正在开发中...');
+        }
+
+        // 其他的JavaScript函数...
+    </script>
+</body>
+</html>
